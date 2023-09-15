@@ -7,6 +7,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -27,16 +28,15 @@ public class menu extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String deus = (String) session.getAttribute("jesus");
+        if(deus == null)
+            response.sendRedirect("index.html");
+        else
+        {
         response.setContentType("text/html;charset=UTF-8");
        
-        String name = request.getParameter("nome");
-        String senha = request.getParameter("senha");
-       
-        if(name.equals("nome") && senha.equals("123")) {
-            response.sendRedirect("Menu.html");
-        } else {
-            response.sendRedirect("index.html");
-        }
+        
        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -46,12 +46,13 @@ public class menu extends HttpServlet {
             out.println("<title>Servlet menu</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Seja bem vindo</h1>");
-            out.println("<a href='index.html'>Seja bem vindo</h1>");
+            out.println("<h1>Seja bem</h1>");
+            out.println("<a href='Menu.html'>Seja bem vindo</h1>");
             out.println("</body>");
             out.println("</html>");
         }
     }
+   }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -79,7 +80,17 @@ public class menu extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String name = request.getParameter("login");
+        String senha = request.getParameter("senha");
+       
+        if(name.equals("nome") && senha.equals("123")) {
+            
+            request.getSession(true).setAttribute("jesus", name);
+            processRequest(request, response);
+        } else {
+            response.sendRedirect("index.html");
+        }
     }
 
     /**

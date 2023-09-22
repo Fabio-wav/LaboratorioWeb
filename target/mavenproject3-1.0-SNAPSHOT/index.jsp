@@ -1,3 +1,11 @@
+<%-- 
+    Document   : index
+    Created on : 21 de set. de 2023, 21:14:15
+    Author     : ice
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
     <head>
         <title>Start Page</title>
@@ -12,6 +20,9 @@
         }
     </style>
     <body>
+        <%
+            String mensagem = (String) session.getAttribute("msg");
+            %>
         <h1>Welcomeeee</h1>
         <form method="post" action="menu">
             <label>Digite seu login</label>
@@ -24,5 +35,15 @@
             <br/>
             <input type="submit"/>
         </form>
+        <%
+            if(mensagem != null)
+            {
+            %>
+            <p> <%=mensagem%></p>
+            <%
+                }
+                %>
+        
+            
     </body>
 </html>

@@ -1,3 +1,5 @@
+package com.mycompany.mavenproject3;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
@@ -31,7 +33,7 @@ public class menu extends HttpServlet {
         HttpSession session = request.getSession();
         String deus = (String) session.getAttribute("jesus");
         if(deus == null)
-            response.sendRedirect("index.html");
+            response.sendRedirect("index.jsp");
         else
         {
         response.setContentType("text/html;charset=UTF-8");
@@ -47,7 +49,7 @@ public class menu extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Seja bem</h1>");
-            out.println("<a href='Menu.html'>Seja bem vindo</h1>");
+            out.println("<a href='welcome.jsp'>Seja bem vindo</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -89,7 +91,8 @@ public class menu extends HttpServlet {
             request.getSession(true).setAttribute("jesus", name);
             processRequest(request, response);
         } else {
-            response.sendRedirect("index.html");
+            request.getSession(true).setAttribute("msg", "Login Invalido");
+            response.sendRedirect("index.jsp");
         }
     }
 

@@ -22,7 +22,7 @@
     </servlet>
     <servlet>
         <servlet-name>ConFactory</servlet-name>
-        <servlet-class>com.mycompany.mavenproject3.ConFactory</servlet-class>
+        <servlet-class>model.ConFactory</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>menu</servlet-name>

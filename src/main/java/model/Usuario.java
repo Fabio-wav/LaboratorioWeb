@@ -1,9 +1,9 @@
 package model;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Id;
+//import javax.persistence.Basic;
+//import javax.persistence.Column;
+//import javax.persistence.Id;
     
    
 public class Usuario implements Serializable {

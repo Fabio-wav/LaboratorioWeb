@@ -12,6 +12,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import model.DaoUsuario;
+import model.Usuario;
 
 /**
  *
@@ -85,8 +87,9 @@ public class menu extends HttpServlet {
         
         String name = request.getParameter("login");
         String senha = request.getParameter("senha");
-       
-        if(name.equals("nome") && senha.equals("123")) {
+       DaoUsuario du = new DaoUsuario(1, "fabio", "123");
+       Usuario u = du.buscar(name) ;
+        if(u != null && u.getSenha().equals(senha)) {
             
             request.getSession(true).setAttribute("jesus", name);
             processRequest(request, response);

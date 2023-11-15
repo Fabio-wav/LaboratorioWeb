@@ -87,7 +87,7 @@ public class menu extends HttpServlet {
         
         String name = request.getParameter("login");
         String senha = request.getParameter("senha");
-       DaoUsuario du = new DaoUsuario(1, "fabio", "123");
+       DaoUsuario du = new DaoUsuario(1, "usuario", "123");
        Usuario u = du.buscar(name) ;
         if(u != null && u.getSenha().equals(senha)) {
             
